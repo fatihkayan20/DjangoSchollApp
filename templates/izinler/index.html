@@ -1,0 +1,33 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="container text-center">
+        {% for i in izin %}
+            <div class="izin my-5 column">
+
+                <h1 class="title ">
+                    <a href="{% url 'izinler:detail' i.slug %}">{{ i.title }}</a>
+
+                </h1>
+
+                <div class="detail column">
+                    <div>Etkinlik Başlangıcı :
+                            {{ i.event_start_date }}</div>
+                    <div    >Etkinlik Bitişi :
+                        {{ i.event_end_date }}</div>
+
+                </div>
+
+                <div class="votes ">
+                    <span class="text-success">Kabul Edenler - {{ i.accept.count }}</span>
+                    <span class="text-danger"> Kabul Etmeyenler - {{ i.veto.count }}</span>
+
+                </div>
+
+            </div>
+
+
+        {% endfor %}
+
+    </div>
+{% endblock %}

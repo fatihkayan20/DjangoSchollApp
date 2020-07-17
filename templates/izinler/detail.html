@@ -1,0 +1,43 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="container ">
+            <div class="izin my-5 column">
+
+                <h1 class="title text-center ">
+                    {{ izin.title }}
+                </h1>
+
+                <div class="content my-2">
+                    {{ izin.content }}
+                </div>
+
+                <div class="info  d-flex justify-content-between">
+
+                    <div class="votes mr-5 ">
+                        <div class="buttons">
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <button name="submit" type="submit" value="accept" class="btn btn-primary"><i class="fas fa-check"></i></button>
+                                <button name="submit" type="submit" value="veto" class="btn btn-danger"><i class="fas fa-times"></i></button>
+                            </form>
+                        </div>
+                        <div class="column">
+                            <div><span class="{{ color }}">{% if message %} {{ message }} {% endif %}</span></div>
+                            <div><span class="text-success">Kabul Edenler - {{ izin.accept.count }}</span>
+                            <span class="text-danger"> Kabul Etmeyenler - {{ izin.veto.count }}</span></div>
+
+                        </div>
+                    </div>
+                    <div class="detail column ml-5  ">
+                        <div>Etkinlik Başlangıcı :
+                            {{ izin.event_start_date }}</div>
+                        <div>Etkinlik Bitişi :
+                            {{ izin.event_end_date }}</div>
+                    </div>
+                </div>
+            </div>
+
+
+    </div>
+{% endblock %}
