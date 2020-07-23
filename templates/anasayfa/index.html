@@ -1,0 +1,62 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="content col-md-8 my-md-5 mt-sm-2 mb-sm-5">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus atque dignissimos dolorem doloribus
+                eius, eveniet explicabo minima non quos ratione?
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aperiam commodi, consequatur,
+                consequuntur cum dignissimos dolore doloribus error, facere harum hic id illo in inventore ipsum magni
+                maiores maxime mollitia natus nemo nesciunt nisi nobis numquam obcaecati optio perspiciatis possimus
+                quaerat quis reiciendis rem repellendus sed suscipit vel velit veniam vero voluptatibus. Ab amet
+                consectetur deserunt distinctio dolor doloremque error esse est explicabo illo inventore ipsam, magni
+                maxime minus natus neque nostrum officia pariatur placeat quas qui repellat sed sunt vel voluptas?
+                Delectus doloribus dolorum, expedita fugit libero maxime nesciunt non odio perferendis quae quas quidem
+                sed. Cumque facilis illo quas sunt vero! Est in mollitia nam sunt voluptate? Deleniti illum vero
+                voluptatibus! Ad aliquam aperiam aspernatur consequuntur cum cupiditate debitis dicta dolorem, ducimus
+                eos error fuga illum impedit incidunt inventore labore laborum laudantium magni necessitatibus nihil
+                nulla obcaecati omnis quaerat quisquam quos recusandae repudiandae, sapiente sequi tempora tempore
+                temporibus veritatis vero voluptatem! Alias aspernatur, commodi cum cumque dolore eum ex fugiat harum
+                incidunt ipsa ipsum iure laboriosam laudantium magni neque officia quasi quibusdam quos repudiandae
+                rerum similique sint veniam vero? Ab asperiores dicta laboriosam magni, odit quis quos vitae voluptates.
+                Esse explicabo fugit ipsum odit omnis quo ratione totam!
+            </div>
+            <div class="column col-md-3 ml-md-5 mt-2">
+
+                <div class="card">
+                    <div class="card-header text-center">
+                        <a href="{% url 'ödev:index' %}">Ödev Arşivi</a>
+                    </div>
+                    <ul class="list-group list-group-flush d-block">
+                        {% for i in odev %}
+                            <li class="list-group list-group-item">
+                                <a href="{% url 'ödev:detail' i.slug %}">{{ i.title }} </a>
+                                <div>{{ i.published_date.date }}</div>
+                            </li>
+
+                        {% endfor %}
+
+                    </ul>
+                </div>
+
+
+                <div class="card mt-5">
+                    <div class="card-header text-center">
+                        <a href="{% url 'foto:index' %}">Fotoğraf Arşivi</a>
+                    </div>
+                   <ul class="list-group list-group-flush d-block">
+                        {% for i in fotolor %}
+                            <li class="list-group list-group-item">
+                                <a href="{% url 'foto:detail' i.slug %}">{{ i.title }} </a>
+                                <div>{{ i.published_date.date }}</div>
+                            </li>
+
+                        {% endfor %}
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}

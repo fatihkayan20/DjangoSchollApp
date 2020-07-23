@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="container text-center">
+        {% for i in notifications %}
+            <div class="izin my-5 column">
+
+                <h1 class="title ">
+                    <a href="{% url 'duyurular:detail' i.slug %}">{{ i.title }}</a>
+
+                </h1>
+                {{ i.publish_date }}
+
+
+
+            </div>
+
+
+
+        {% endfor %}
+
+    </div>
+{% endblock %}

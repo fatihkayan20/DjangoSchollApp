@@ -1,0 +1,24 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="container ">
+        <div class="izin my-5 column">
+
+            <h1 class="title text-center ">
+                {{ notification.title }}
+            </h1>
+
+            <div class="content my-2">
+                {{ notification.content }}
+            </div>
+            <div class="date float-right">
+                {{ notification.publish_date }}
+            </div>
+
+
+        </div>
+
+</div>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="container text-center">
+        {% for i in odev %}
+            <div class="izin my-5  ">
+                <h1 class="title  text-center">
+                    <div ><a href="{% url 'ödev:detail' i.slug %}">{{ i.title }}</a><small class="text-center" style="font-size: 16px">-{{ i.published_date.date }}</small>
+                    </div>
+                </h1>
+
+            </div>
+
+
+        {% endfor %}
+
+    </div>
+{% endblock %}

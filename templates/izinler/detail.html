@@ -2,41 +2,104 @@
 
 {% block content %}
     <div class="container ">
-            <div class="izin my-5 column">
+        <div class="izin my-5 column">
 
-                <h1 class="title text-center ">
-                    {{ izin.title }}
-                </h1>
+            <h1 class="title text-center ">
+                {{ izin.title }}
+            </h1>
 
-                <div class="content my-2">
-                    {{ izin.content }}
+            <div class="content my-2">
+                {{ izin.content }}
+            </div>
+
+            <div class="info  d-flex justify-content-between">
+
+                <div class="votes mr-5 ">
+                    <div class="buttons">
+                        <form action="" method="post" class="{{ oy }}">
+                            {% csrf_token %}
+                            <button name="submit" type="submit" value="accept"
+                                    class="btn {% if  request.user in accepted %} btn-primary {% else %} btn-outline-primary {% endif %}"><i
+                                    class="fas fa-check"></i></button>
+                            <button name="submit" type="submit" value="veto" class="btn {% if  request.user in vetod %} btn-danger {% else %} btn-outline-danger {% endif %}"><i
+                                    class="fas fa-times"></i></button>
+                        </form>
+                    </div>
+                    <div class="column">
+                        <div><span class="{{ color }}">{% if message %} {{ message }} {% endif %}</span></div>
+                        <div><span class="{{ uyarı }} text-warning">Oy verme süresi geçmiştir.</span></div>
+                        <div><span class="text-success" data-toggle="modal"
+                                   data-target="#accepted">Kabul Edenler - {{ izin.accept.count }}</span>
+                            <span class="text-danger" data-toggle="modal"
+                                  data-target="#vetod"> Kabul Etmeyenler - {{ izin.veto.count }}</span></div>
+
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="accepted" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">İzin Verenler</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {% for i in accepted %}
+                                            <div class="row">
+                                                <div class="user">
+                                                    {{ i.username }}
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="modal fade" id="vetod" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">İzin Vermeyenler</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {% for i in vetod %}
+                                            <div class="row">
+                                                <div class="user">
+                                                    {{ i.username }}
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-
-                <div class="info  d-flex justify-content-between">
-
-                    <div class="votes mr-5 ">
-                        <div class="buttons">
-                            <form action="" method="post">
-                                {% csrf_token %}
-                                <button name="submit" type="submit" value="accept" class="btn btn-primary"><i class="fas fa-check"></i></button>
-                                <button name="submit" type="submit" value="veto" class="btn btn-danger"><i class="fas fa-times"></i></button>
-                            </form>
-                        </div>
-                        <div class="column">
-                            <div><span class="{{ color }}">{% if message %} {{ message }} {% endif %}</span></div>
-                            <div><span class="text-success">Kabul Edenler - {{ izin.accept.count }}</span>
-                            <span class="text-danger"> Kabul Etmeyenler - {{ izin.veto.count }}</span></div>
-
-                        </div>
-                    </div>
-                    <div class="detail column ml-5  ">
-                        <div>Etkinlik Başlangıcı :
-                            {{ izin.event_start_date }}</div>
-                        <div>Etkinlik Bitişi :
-                            {{ izin.event_end_date }}</div>
-                    </div>
+                <div class="detail column ml-5  ">
+                    <div>Etkinlik Başlangıcı :
+                        {{ izin.event_start_date }}</div>
+                    <div>Etkinlik Bitişi :
+                        {{ izin.event_end_date }}</div>
                 </div>
             </div>
+        </div>
 
 
     </div>

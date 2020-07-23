@@ -1,3 +1,5 @@
+from datetime import time, datetime
+
 from django.shortcuts import render, get_object_or_404
 from .models import *
 
@@ -16,8 +18,20 @@ def index(request):
 
 def detail(request, slug):
     izin = get_object_or_404(Permission, slug=slug)
+    accepted = izin.accept.all()
+    vetod = izin.veto.all()
     message = ''
     color = ''
+
+    date=izin.event_start_date
+    now = datetime.now()
+
+    if date.replace(tzinfo=None)>now.replace(tzinfo=None):
+        oy='d-block'
+        uyarı='d-none'
+    else:
+        oy = 'd-none'
+        uyarı = 'd-block'
 
     ############# Onay  ##############
     if request.POST.get('submit') == 'accept':
@@ -58,5 +72,9 @@ def detail(request, slug):
         'izin': izin,
         'message': message,
         'color': color,
+        'accepted': accepted,
+        'vetod': vetod,
+        'oy':oy,
+        'uyarı':uyarı,
     }
     return render(request, 'izinler/detail.html', context)
