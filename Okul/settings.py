@@ -79,11 +79,18 @@ WSGI_APPLICATION = 'Okul.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+        'ENGINE': 'sql_server.pyodbc',
+        'NAME': 'okul',
+        'USER': 'fatihkayan@fatihkayan',
+        'PASSWORD': 'Fatihk123.',
+        'HOST': 'fatihkayan.database.windows.net',
+        'PORT': '1433',
 
+        'OPTIONS': {
+            'driver': 'ODBC Driver 13 for SQL Server',
+        },
+    },
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

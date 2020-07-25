@@ -3,7 +3,6 @@ from django.http import FileResponse
 from django.shortcuts import render, get_object_or_404
 from .models import *
 
-from reportlab.pdfgen import canvas
 
 
 # Create your views here.
