@@ -1,4 +1,4 @@
 
-Django~=2.1
+Django~=1.4
 reportlab~=3.5.46
 django-azure-sql-backend
