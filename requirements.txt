@@ -1,3 +1,4 @@
 
 Django~=3.0
 reportlab~=3.5.46
+django-azure-sql-backend
